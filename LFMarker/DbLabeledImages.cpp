@@ -42,8 +42,6 @@ static bool _HasDescription(UnicodeString& strFileName)
   if (!_IsImageFile(strFileName))
 	return false;
 
-  if (FileExists(ChangeFileExt(strFileName, ".ieye")))
-	  return true;
   if (FileExists(ChangeFileExt(strFileName, ".xml")))
 	  return true;
   if (FileExists(ChangeFileExt(strFileName, ".face")))
@@ -161,102 +159,55 @@ bool __fastcall TDbLabeledImages::Init(AnsiString& strDbPath, ILFDetectEngine* e
     m_engine = engine;
 }
 
-void __fastcall TDbLabeledImages::SaveFragment(awpImage* img, SDbExportOptions& options, int count, TLFRect& scanBox, TLFRoiImageDescriptor* roid, const char* lpClassLabel)
+void __fastcall TDbLabeledImages::SaveFragment(awpImage* img, SDbExportOptions& options, int count, TLFRect& scanBox, const char* lpClassLabel)
 {
-      srand((unsigned)time(NULL));
+	  srand((unsigned)time(NULL));
 
-      bool save = true;
+	  bool save = true;
 	  if (options.copyRandom)
 			save =  rand() % 100 < options.random;
 
-      if (!save)
-      	return;
+	  if (!save)
+		return;
 
-      awpImage* pFragment = NULL;
-      awpRect rr = scanBox.GetRect();
+	  awpImage* pFragment = NULL;
+	  awpRect rr = scanBox.GetRect();
 	  awpCopyRect(img, &pFragment, &rr);
-      if (pFragment == NULL)
-      {
+	  if (pFragment == NULL)
+	  {
 			return;
-      }
-      awpConvert(pFragment, AWP_CONVERT_3TO1_BYTE);
-      AnsiString strFileName = MakeExportFileName(options, count, false, lpClassLabel);
-
-      if (roid != NULL)
-      {
-		AnsiString strEyeName = ChangeFileExt(strFileName, ".ieye");
-        TLFRoiImageDescriptor rd;
-        for (int i = 0; i < roid->GetNumRois(); i++)
-        {
-			TLFRoi* roi = roid->GetRoi(i);
-            int dx = -scanBox.Left();
-			int dy = -scanBox.Top();
-            roi->Shift(dx,dy);
-            TROI r = roi->GetRoi();
-            if (options.needResize)
-            {
-                double alfa = (double)options.baseSize / (double)pFragment->sSizeX;
-                r.p.X *= alfa;
-                r.p.Y *= alfa;
-                r.p1.X *= alfa;
-                r.p1.Y *= alfa;
-            }
-
-                rd.AddRoi(r.p, r.p1);
-        }
-        rd.SaveToFile(strEyeName.c_str());
 	  }
-      if (options.needResize)
-      {
+	  awpConvert(pFragment, AWP_CONVERT_3TO1_BYTE);
+	  AnsiString strFileName = MakeExportFileName(options, count, false, lpClassLabel);
+
+	  if (options.needResize)
+	  {
 		 int w = options.baseSize;
-         int h = (int)floor((double)w*(double)pFragment->sSizeY / (double)pFragment->sSizeX + 0.5);
+		 int h = (int)floor((double)w*(double)pFragment->sSizeY / (double)pFragment->sSizeX + 0.5);
 
 		 awpResizeBilinear(pFragment, w,h);
-      }
+	  }
 
 
-		awpSaveImage(strFileName.c_str(), pFragment);
+	  awpSaveImage(strFileName.c_str(), pFragment);
 
 
-      if (options.needFlip)
-      {
-          strFileName = MakeExportFileName(options, count, true, lpClassLabel);
-
-          if (roid != NULL)
-          {
-            AnsiString strEyeName = ChangeFileExt(strFileName, ".ieye");
-            TLFRoiImageDescriptor rd;
-            for (int i = 0; i < roid->GetNumRois(); i++)
-            {
-                TLFRoi* roi = roid->GetRoi(i);
-                int dx = -scanBox.Left();
-                int dy = -scanBox.Top();
-                roi->Shift(dx,dy);
-                if (options.needResize)
-                {
-                    double alfa = (double)options.baseSize / (double)pFragment->sSizeX;
-                    roi->Scale(alfa);
-				}
-                    TROI r = roi->GetRoi();
-					r.p.X = pFragment->sSizeX - r.p.X;
-                    r.p1.X = pFragment->sSizeX - r.p1.X;
-                    rd.AddRoi(r.p, r.p1);
-            }
-            rd.SaveToFile(strEyeName.c_str());
-           }
+	  if (options.needFlip)
+	  {
+		  strFileName = MakeExportFileName(options, count, true, lpClassLabel);
 
 		  awpFlip(&pFragment, AWP_FLIP_HRZT);
 		  if (options.needResize)
-          {
-             int w = options.baseSize;
-             int h = (int)floor((double)w*(double)pFragment->sSizeY / (double)pFragment->sSizeX + 0.5);
-               awpResizeBilinear(pFragment, w,h);
-          }
-          awpConvert(pFragment, AWP_CONVERT_3TO1_BYTE);
-          awpSaveImage(strFileName.c_str(), pFragment);
+		  {
+			 int w = options.baseSize;
+			 int h = (int)floor((double)w*(double)pFragment->sSizeY / (double)pFragment->sSizeX + 0.5);
+			   awpResizeBilinear(pFragment, w,h);
+		  }
+		  awpConvert(pFragment, AWP_CONVERT_3TO1_BYTE);
+		  awpSaveImage(strFileName.c_str(), pFragment);
 
-      }
-      awpReleaseImage(&pFragment);
+	  }
+	  awpReleaseImage(&pFragment);
 
 }
 void __fastcall TDbLabeledImages::ExportFragments(SDbExportOptions& options)
@@ -313,19 +264,6 @@ void __fastcall TDbLabeledImages::ExportFragments(SDbExportOptions& options)
 		 if (!exist)
 			continue;
 
-		 TLFRoiImageDescriptor* rd = NULL;
-		 if (options.copyIeye)
-		 {
-			rd = new TLFRoiImageDescriptor();
-			AnsiString strIeyeFile = ChangeFileExt(sr.Name, ".ieye");
-			rd->LoadFromFile(strIeyeFile.c_str());
-			if (rd->GetNumRois() == 0)
-			{
-				delete rd;
-				rd = NULL;
-			}
-		 }
-
 		 AnsiString _ansi = sr.Name;
 		 sd.LoadXML(_ansi.c_str());
 		 sd.SetImage(img);
@@ -369,7 +307,7 @@ void __fastcall TDbLabeledImages::ExportFragments(SDbExportOptions& options)
 				  if (bounds->RectOverlap(scanBox) > options.scannerThreshold)
 				  {
 					  count++;
-					  SaveFragment(img, options, count, scanBox, rd, _ansi.c_str());
+					  SaveFragment(img, options, count, scanBox, _ansi.c_str());
 				  }
 				}
 			  }
@@ -391,7 +329,7 @@ void __fastcall TDbLabeledImages::ExportFragments(SDbExportOptions& options)
 			  //  if (maxOverlap >= options.scannerThreshold)
 				{
 					count++;
-					SaveFragment(img, options, count, maxRect, rd,  _ansi.c_str());
+					SaveFragment(img, options, count, maxRect, _ansi.c_str());
 				}
 			  }
 			}
@@ -400,13 +338,8 @@ void __fastcall TDbLabeledImages::ExportFragments(SDbExportOptions& options)
 				count++;
 				TLFRect scanBox;
 				scanBox.SetRect(r);
-				SaveFragment(img, options, count, scanBox, rd,  _ansi.c_str());
+				SaveFragment(img, options, count, scanBox, _ansi.c_str());
 			}
-		 }
-		 if (rd != NULL)
-		 {
-			delete rd;
-			rd = NULL;
 		 }
 		 awpReleaseImage(&img);
 		 if (m_ProgressEvent != NULL)

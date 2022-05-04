@@ -5,6 +5,7 @@ object Form1: TForm1
   ClientHeight = 542
   ClientWidth = 784
   Color = clBtnFace
+  CustomTitleBar.CaptionAlignment = taCenter
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -220,6 +221,10 @@ object Form1: TForm1
         OnChange = PageControl1Change
         object TabSheet1: TTabSheet
           Caption = 'File System'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Splitter5: TSplitter
             Left = 0
             Top = 227
@@ -298,6 +303,10 @@ object Form1: TForm1
         object TabSheet2: TTabSheet
           Caption = 'Project'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object TreeView1: TTreeView
             Left = 0
             Top = 0
@@ -331,6 +340,10 @@ object Form1: TForm1
         object TabSheet3: TTabSheet
           Caption = 'Database'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Panel3: TPanel
             Left = 0
             Top = 0
@@ -571,9 +584,6 @@ object Form1: TForm1
           SlideShowInterval = 500
           Align = alClient
           ParentColor = False
-          OnMouseMove = FImage1MouseMove
-          OnPaint = PhImage2Paint
-          AfterOpen = PhImage2AfterOpen
         end
       end
     end

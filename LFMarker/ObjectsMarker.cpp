@@ -5,28 +5,25 @@
 #include "IniParamsUnit.h"
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
+USEFORM("ImageViewForm.cpp", FragmentForm);
 USEFORM("LongProcessForm.cpp", LongProcDlg);
 USEFORM("MainForm.cpp", Form1);
-USEFORM("MedianFilterForm.cpp", MedianFilterDlg);
-USEFORM("GaussFilterForm.cpp", GaussFilterDlg);
-USEFORM("ImageViewForm.cpp", FragmentForm);
-USEFORM("SystemOptionsForm.cpp", PagesDlg);
-USEFORM("TableViewForm.cpp", TableForm);
-USEFORM("ResizeForm.cpp", ResizeDlg);
-USEFORM("RotateForm.cpp", RotateDlg);
-USEFORM("..\EngineView\EngineViewUnit.cpp", EngineViewForm);
-USEFORM("DbConvertForm.cpp", DbConvertDlg);
-USEFORM("..\common\AboutForm.cpp", AboutBox);
-USEFORM("..\common\dictinaryEditor.cpp", dictinaryEditDlg);
-USEFORM("..\common\dictinaryItemEditor.cpp", dictinaryItemDlg);
-USEFORM("DbCopyForm.cpp", DbCopyDlg);
-USEFORM("DetectorInfoForm.cpp", DetectorForm);
 USEFORM("DictionaryForm.cpp", DictionaryDialog);
 USEFORM("EngineErrForm.cpp", EngineErrDlg);
+USEFORM("EngineView\EngineViewUnit.cpp", EngineViewForm);
 USEFORM("FilterForm.cpp", FilterDlg);
+USEFORM("GaussFilterForm.cpp", GaussFilterDlg);
+USEFORM("ResizeForm.cpp", ResizeDlg);
+USEFORM("RotateForm.cpp", RotateDlg);
+USEFORM("SystemOptionsForm.cpp", PagesDlg);
+USEFORM("TableViewForm.cpp", TableForm);
+USEFORM("MedianFilterForm.cpp", MedianFilterDlg);
 USEFORM("DbExportForm.cpp", DbExportDialog);
 USEFORM("DbInfoForm.cpp", DbInfoDialog);
 USEFORM("DbSplitForm.cpp", DbSplitDlg);
+USEFORM("DetectorInfoForm.cpp", DetectorForm);
+USEFORM("DbConvertForm.cpp", DbConvertDlg);
+USEFORM("DbCopyForm.cpp", DbCopyDlg);
 //---------------------------------------------------------------------------
 HANDLE hm = 0;
 TMarkerIniParams gIniParams;
@@ -47,7 +44,6 @@ WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
         Application->Initialize();
         TStyleManager::TrySetStyle("Carbon");
 		Application->CreateForm(__classid(TForm1), &Form1);
-		Application->CreateForm(__classid(TAboutBox), &AboutBox);
 		Application->CreateForm(__classid(TTableForm), &TableForm);
 		Application->CreateForm(__classid(TFragmentForm), &FragmentForm);
 		Application->CreateForm(__classid(TDbInfoDialog), &DbInfoDialog);
@@ -57,7 +53,6 @@ WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 		Application->CreateForm(__classid(TDbConvertDlg), &DbConvertDlg);
 		Application->CreateForm(__classid(TDbCopyDlg), &DbCopyDlg);
 		Application->CreateForm(__classid(TDetectorForm), &DetectorForm);
-		Application->CreateForm(__classid(TEngineViewForm), &EngineViewForm);
 		Application->CreateForm(__classid(TDictionaryDialog), &DictionaryDialog);
 		Application->CreateForm(__classid(TDbSplitDlg), &DbSplitDlg);
 		Application->CreateForm(__classid(TLongProcDlg), &LongProcDlg);
@@ -66,8 +61,8 @@ WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 		Application->CreateForm(__classid(TGaussFilterDlg), &GaussFilterDlg);
 		Application->CreateForm(__classid(TMedianFilterDlg), &MedianFilterDlg);
 		Application->CreateForm(__classid(TResizeDlg), &ResizeDlg);
-		Application->CreateForm(__classid(TdictinaryEditDlg), &dictinaryEditDlg);
-		Application->CreateForm(__classid(TdictinaryItemDlg), &dictinaryItemDlg);
+		Application->CreateForm(__classid(TEngineViewForm), &EngineViewForm);
+		Application->CreateForm(__classid(TAboutBox), &AboutBox);
 		Application->Run();
         ReleaseMutex(hm);
         CloseHandle(hm);

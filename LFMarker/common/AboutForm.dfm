@@ -6,6 +6,7 @@ object AboutBox: TAboutBox
   ClientHeight = 318
   ClientWidth = 298
   Color = clBtnFace
+  CustomTitleBar.CaptionAlignment = taCenter
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -226,6 +227,15 @@ object AboutBox: TAboutBox
       Height = 13
       Caption = 'Copyright'
       IsControl = True
+    end
+    object Comments: TLabel
+      Left = 120
+      Top = 83
+      Width = 153
+      Height = 39
+      AutoSize = False
+      Caption = 'Comments'
+      WordWrap = True
     end
     object Memo1: TMemo
       Left = 8

@@ -27,7 +27,6 @@ struct SDbExportOptions
 	int				racurs;                 //
 	bool 			needResize;             //
 	int				baseSize;               //
-	bool 			copyIeye;               //
 	bool 			copyRandom;             //
     bool 			copyBackground;			//
 	int				random;                 //
@@ -68,7 +67,7 @@ protected:
 
 	void __fastcall Clear();
 
-	void __fastcall SaveFragment(awpImage* img, SDbExportOptions& options, int count, TLFRect& scanBox, TLFRoiImageDescriptor* roid = NULL, const char* lpClassLabel = NULL);
+	void __fastcall SaveFragment(awpImage* img, SDbExportOptions& options, int count, TLFRect& scanBox, const char* lpClassLabel = NULL);
     void __fastcall SaveBackground(SDbExportOptions& options);
 	AnsiString 		MakeExportFileName(SDbExportOptions& options, int num, bool fliped, const char* lpClassLabel = NULL);
 

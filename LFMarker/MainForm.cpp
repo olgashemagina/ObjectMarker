@@ -166,7 +166,7 @@ void __fastcall TForm1::FFaceEditor1AfterOpen(TObject *Sender)
     m_Selected = -1;
     UpdateSatatusBar();
     this->m_objects->Clear();
-    this->m_rois.Clear();
+    this->m_Descr.Clear();
      if( FileExists(ChangeFileExt( m_strFileName, ".xml" )))
      {
         AnsiString strFileName = ChangeFileExt( m_strFileName, ".xml" );
@@ -312,11 +312,8 @@ void __fastcall TForm1::ImageDelImageActionExecute(TObject *Sender)
 // delete data
 	if (FileExists(m_strFileName))
 		DeleteFile(m_strFileName);
-	AnsiString strName = ChangeFileExt(m_strFileName, ".ieye");
-	if (FileExists(strName))
-		DeleteFile(strName);
 
-	strName = ChangeFileExt(m_strFileName, ".xml");
+	AnsiString strName = ChangeFileExt(m_strFileName, ".xml");
 	if (FileExists(strName))
 		DeleteFile(strName);
 
@@ -624,7 +621,7 @@ void __fastcall TForm1::DbExportFragmentsActionExecute(TObject *Sender)
 	   export_options.needFlip = DbExportDialog->CheckBox1->Checked;
 	   export_options.needResize =  DbExportDialog->CheckBox7->Checked;
 	   export_options.copyRandom =  DbExportDialog->CheckBox6->Checked;
-       export_options.copyIeye =  DbExportDialog->CheckBox5->Checked;
+//       export_options.copyIeye =  DbExportDialog->CheckBox5->Checked;
 /*
 	   m_ProgressBar->Position  = 0;
 	   m_ProgressBar->Visible = true;
@@ -868,23 +865,17 @@ void __fastcall TForm1::DrawRois(TCanvas* cnv)
 	cnv->Pen->Color = clLime;
 	cnv->Pen->Width = 1;
 
-	for (int i = 0; i < m_rois.GetNumRois(); i++)
-    {
-          TLFRoi* roi = m_rois.GetRoi(i);
-          if (roi != NULL)
-          {
-               	TROI r =     roi->GetRoi();
-
-                awpPoint le = r.p;
-                awpPoint re = r.p1;
-                TRect rect;
-				rect.init(le.X - 2, le.Y - 2, le.X + 2, le.Y + 2);
-                TRect Rect2 = PhImage2->GetScreenRect(rect); //FImage1->GetScreenRect(rect);
-                cnv->Rectangle(Rect2);
-				rect.init(re.X - 2, re.Y - 2, re.X + 2, re.Y + 2);
-                Rect2 = PhImage2->GetScreenRect(rect);
-                cnv->Rectangle(Rect2);
-          }
+	for (int i = 0; i < m_Descr.GetItemsCount(); i++)
+	{
+		  TLFDetectedItem *di = m_Descr.GetDetectedItem(i);
+		  if (di != NULL)
+		  {
+				TLFRect *r = di->GetBounds();
+				TRect rect;
+				rect.init(r->Left(), r->Top(), r->Right(), r->Bottom());
+				TRect Rect2 = PhImage2->GetScreenRect(rect); //FImage1->GetScreenRect(rect);
+				cnv->Rectangle(Rect2);
+		  }
 
     }
 
@@ -1153,7 +1144,7 @@ void __fastcall TForm1::Detect()
 	this->RepaintImage();
 
 	this->m_objects->Clear();
-	this->m_rois.Clear();
+	this->m_Descr.Clear();
 
 	if (ToolButton8->Down)
 	   this->ObjectDetectorHelper();
@@ -2062,17 +2053,17 @@ void __fastcall TForm1::PhImage2AfterOpen(TObject *Sender)
 //---
     m_Selected = -1;
     this->m_objects->Clear();
-    this->m_rois.Clear();
-     if( FileExists(ChangeFileExt( m_strFileName, ".xml" )))
-     {
-        AnsiString strFileName = ChangeFileExt( m_strFileName, ".xml" );
-        if (!this->m_Descr.LoadXML(strFileName.c_str()))
-        {
-            ShowMessage("Cannot load description " + strFileName);
-            return;
-        }
-        FragmentForm->SDescriptor = &this->m_Descr;
-     }
+	this->m_Descr.Clear();
+	 if( FileExists(ChangeFileExt( m_strFileName, ".xml" )))
+	 {
+		AnsiString strFileName = ChangeFileExt( m_strFileName, ".xml" );
+		if (!this->m_Descr.LoadXML(strFileName.c_str()))
+		{
+			ShowMessage("Cannot load description " + strFileName);
+			return;
+		}
+		FragmentForm->SDescriptor = &this->m_Descr;
+	 }
 
 	Detect();
 

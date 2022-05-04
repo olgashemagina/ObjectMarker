@@ -63,7 +63,7 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <SanitizedProjectName>ObjectsMarker</SanitizedProjectName>
         <VerInfo_Locale>1049</VerInfo_Locale>
-        <IncludePath>common\;..\EngineView\;..\common\;$(AWP);$(AWP)\include;$(LF)\include;$(PHOTON41);$(PHOTON41)\photon;$(IncludePath)</IncludePath>
+        <IncludePath>..\dictinary_editor\;EngineView\;common\;..\EngineView\;..\common\;$(AWP);$(AWP)\include;$(LF)\include;$(PHOTON41);$(PHOTON41)\photon;$(IncludePath)</IncludePath>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Build>111</VerInfo_Build>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.111;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
@@ -82,7 +82,7 @@
         <BRCC_IncludePath>..\common;$(BDS)\Bin;$(BDS)\Projects\common;$(BDS)\Projects;$(BDS)\include;$(BDS)\include\vcl;..\..\awpipl2\include;..\..\awplflib\include;..\..\include;..\..\awpipl2\include\_include;$(TINY);$(PHOTON);$(LF);$(BRCC_IncludePath)</BRCC_IncludePath>
         <BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
         <TASM_Debugging>Full</TASM_Debugging>
-        <ILINK_LibraryPath>common\;..\EngineView\;..\common\;$(BDS)\Bin;$(BDS)\lib;$(AWP)\lib;$(LF)\lib;$(TINY)\lib;$(PHOTON41)\lib\;$(AWPLIB);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\dictinary_editor\;EngineView\;common\;..\EngineView\;..\common\;$(BDS)\Bin;$(BDS)\lib;$(AWP)\lib;$(LF)\lib;$(TINY)\lib;$(PHOTON41)\lib\;$(AWPLIB);$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <TASM_IncludePath>..\common;$(BDS)\Bin;$(BDS)\Projects\common;$(BDS)\Projects;$(BDS)\include;$(BDS)\include\vcl;..\..\awpipl2\include;..\..\awplflib\include;..\..\include;..\..\awpipl2\include\_include;$(TINY);$(PHOTON);$(LF);$(TASM_IncludePath)</TASM_IncludePath>
         <DCC_UnitSearchPath>.\;$(BDS)\lib;$(BDS)\lib\obj;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_AdditionalSwitches> -M</DCC_AdditionalSwitches>
@@ -107,11 +107,12 @@
         <BRCC_Defines>_DEBUG;$(BRCC_Defines)</BRCC_Defines>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
+        <IncludePath>$(BDSINCLUDE)\windows\vcl;EngineView;$(IncludePath)</IncludePath>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
         <PackageImports>photon41;$(PackageImports)</PackageImports>
+        <ILINK_LibraryPath>$(PHOTON41)\photon\lib\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -169,9 +170,9 @@
         <BPILibOutputDir>$(PHOTON)\lib</BPILibOutputDir>
         <FinalOutputDir>$(PHOTON)\bin</FinalOutputDir>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <VerInfo_Build>17</VerInfo_Build>
+        <VerInfo_Build>19</VerInfo_Build>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=NN-Videolab;FileVersion=4.1.2.17;InternalName=Objects Marker;LegalCopyright=Copyright (c) 2007-2022 NN-Videolab.net;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=Creation of models for the semantic analysis of images.;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=NN-Videolab;FileVersion=4.1.2.19;InternalName=Objects Marker;LegalCopyright=Copyright (c) 2007-2022 NN-Videolab.net;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=Creation of models for the semantic analysis of images.;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <LinkPackageStatics>vcl.lib;rtl.lib;vclx.lib;bcbsmp.lib;dbrtl.lib;xmlrtl.lib;inet.lib;vcldb.lib;vclimg.lib;VclSmp.lib;photon41.lib;Tee.lib</LinkPackageStatics>
         <BCC_UserSuppliedOptions> -tWM -Vx -r- -k -Ve -r</BCC_UserSuppliedOptions>
@@ -182,48 +183,51 @@
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_Release>2</VerInfo_Release>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <IncludePath>C:\Program Files (x86)\tinyxml;C:\ipf_grant_2022\photon.apps\VideoMarker;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>C:\Program Files (x86)\tinyxml\Win32\Release;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="..\common\AboutForm.cpp">
-            <BuildOrder>11</BuildOrder>
-            <Form>AboutBox</Form>
-            <DependentOn>..\common\AboutForm.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\common\Cube3D.cpp">
-            <DependentOn>..\common\Cube3D.h</DependentOn>
-            <BuildOrder>23</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\common\dictinaryEditor.cpp">
-            <Form>dictinaryEditDlg</Form>
+        <CppCompile Include="common\AboutForm.cpp">
             <FormType>dfm</FormType>
-            <DependentOn>..\common\dictinaryEditor.h</DependentOn>
-            <BuildOrder>32</BuildOrder>
+            <BuildOrder>33</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\common\dictinaryItemEditor.cpp">
-            <Form>dictinaryItemDlg</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>..\common\dictinaryItemEditor.h</DependentOn>
-            <BuildOrder>32</BuildOrder>
+        <None Include="common\AboutForm.ddp"/>
+        <None Include="common\AboutForm.dfm"/>
+        <None Include="common\AboutForm.h">
+            <BuildOrder>36</BuildOrder>
+        </None>
+        <CppCompile Include="common\Cube3D.cpp">
+            <DependentOn>common\Cube3D.h</DependentOn>
+            <BuildOrder>37</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\common\SelDirUnit.cpp">
-            <DependentOn>..\common\SelDirUnit.h</DependentOn>
-            <BuildOrder>20</BuildOrder>
+        <None Include="common\Cube3D.h">
+            <BuildOrder>38</BuildOrder>
+        </None>
+        <CppCompile Include="common\Histogramm2DUnit.cpp">
+            <DependentOn>common\Histogramm2DUnit.h</DependentOn>
+            <BuildOrder>39</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\common\VerInfoUnit.cpp">
-            <DependentOn>..\common\VerInfoUnit.h</DependentOn>
-            <BuildOrder>27</BuildOrder>
+        <None Include="common\Histogramm2DUnit.h">
+            <BuildOrder>40</BuildOrder>
+        </None>
+        <CppCompile Include="common\SelDirUnit.cpp">
+            <DependentOn>common\SelDirUnit.h</DependentOn>
+            <BuildOrder>41</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\EngineView\EngineViewUnit.cpp">
-            <Form>EngineViewForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>..\EngineView\EngineViewUnit.h</DependentOn>
-            <BuildOrder>22</BuildOrder>
+        <None Include="common\SelDirUnit.h">
+            <BuildOrder>42</BuildOrder>
+        </None>
+        <CppCompile Include="common\VerInfoUnit.cpp">
+            <DependentOn>common\VerInfoUnit.h</DependentOn>
+            <BuildOrder>43</BuildOrder>
         </CppCompile>
+        <None Include="common\VerInfoUnit.h">
+            <BuildOrder>44</BuildOrder>
+        </None>
         <CppCompile Include="DbConvertForm.cpp">
             <Form>DbConvertDlg</Form>
             <FormType>dfm</FormType>
@@ -275,6 +279,12 @@
             <Form>EngineErrDlg</Form>
             <DependentOn>EngineErrForm.h</DependentOn>
             <BuildOrder>44</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="EngineView\EngineViewUnit.cpp">
+            <Form>EngineViewForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>EngineView\EngineViewUnit.h</DependentOn>
+            <BuildOrder>38</BuildOrder>
         </CppCompile>
         <CppCompile Include="FilterForm.cpp">
             <Form>FilterDlg</Form>
@@ -361,28 +371,25 @@
             <BuildOrder>16</BuildOrder>
         </CppCompile>
         <None Include="todo.txt"/>
+        <FormResources Include="ImageViewForm.dfm"/>
         <FormResources Include="LongProcessForm.dfm"/>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="MedianFilterForm.dfm"/>
+        <FormResources Include="DictionaryForm.dfm"/>
+        <FormResources Include="EngineErrForm.dfm"/>
+        <FormResources Include="EngineView\EngineViewUnit.dfm"/>
+        <FormResources Include="FilterForm.dfm"/>
         <FormResources Include="GaussFilterForm.dfm"/>
-        <FormResources Include="ImageViewForm.dfm"/>
+        <FormResources Include="ResizeForm.dfm"/>
         <FormResources Include="RotateForm.dfm"/>
         <FormResources Include="SystemOptionsForm.dfm"/>
         <FormResources Include="TableViewForm.dfm"/>
-        <FormResources Include="ResizeForm.dfm"/>
-        <FormResources Include="FilterForm.dfm"/>
-        <FormResources Include="..\EngineView\EngineViewUnit.dfm"/>
-        <FormResources Include="DbConvertForm.dfm"/>
-        <FormResources Include="..\common\AboutForm.dfm"/>
-        <FormResources Include="..\common\dictinaryEditor.dfm"/>
-        <FormResources Include="..\common\dictinaryItemEditor.dfm"/>
-        <FormResources Include="DbSplitForm.dfm"/>
-        <FormResources Include="DetectorInfoForm.dfm"/>
-        <FormResources Include="DictionaryForm.dfm"/>
-        <FormResources Include="EngineErrForm.dfm"/>
-        <FormResources Include="DbCopyForm.dfm"/>
+        <FormResources Include="MedianFilterForm.dfm"/>
         <FormResources Include="DbExportForm.dfm"/>
         <FormResources Include="DbInfoForm.dfm"/>
+        <FormResources Include="DbSplitForm.dfm"/>
+        <FormResources Include="DetectorInfoForm.dfm"/>
+        <FormResources Include="DbConvertForm.dfm"/>
+        <FormResources Include="DbCopyForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -563,8 +570,14 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c270mt.dll" Class="DependencyModule">
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="bin\ObjectsMarker.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
+                        <RemoteName>ObjectsMarker.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -580,9 +593,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\..\bin\ObjectsMarker.tds" Configuration="Release" Class="DebugSymbols">
+                <DeployFile LocalName="common\AboutForm.ddp" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win32">
-                        <RemoteName>ObjectsMarker.tds</RemoteName>
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -590,6 +603,12 @@
                 <DeployFile LocalName="ObjectsMarker.res" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="bin\ObjectsMarker.tds" Configuration="Release" Class="DebugSymbols">
+                    <Platform Name="Win32">
+                        <RemoteName>ObjectsMarker.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -608,6 +627,12 @@
                 <DeployFile LocalName="..\..\bin\ObjectsMarker.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>ObjectsMarker.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="common\AboutForm.dfm" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -630,6 +655,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="..\..\bin\ObjectsMarker.exe" Configuration="Release" Class="ProjectOutput"/>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32c270.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="todo.txt" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
@@ -637,12 +668,6 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="..\bin\ObjectsMarker.exe" Configuration="Release" Class="ProjectOutput"/>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32c270.dll" Class="DependencyModule">
-                    <Platform Name="Win32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="..\..\bin\ObjectsMarker.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile Condition="'$(UsingDelphiRTL)'=='true'" LocalName="$(BDS)\bin64\borlndmm.dll" Class="DependencyModule">
                     <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
@@ -679,12 +704,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\..\bin\ObjectsMarker.exe" Configuration="Release" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>ObjectsMarker.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64260.dll" Class="DependencyModule">
                     <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
@@ -697,12 +716,12 @@
                 </DeployFile>
                 <DeployFile LocalName="..\..\bin\ObjectsMarker.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64160mt.dll" Class="DependencyModule"/>
-                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule">
-                    <Platform Name="OSX64">
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64160.dll" Class="DependencyModule"/>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c270mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64160.dll" Class="DependencyModule"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
@@ -1613,10 +1632,6 @@
                 </DeployClass>
                 <DeployClass Name="ProjectiOSLaunchScreen">
                     <Platform Name="iOSDevice64">
-                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
-                        <Operation>64</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
                         <Operation>64</Operation>
                     </Platform>

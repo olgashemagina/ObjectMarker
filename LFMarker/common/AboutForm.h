@@ -24,6 +24,7 @@ __published:
 	TLabel *Copyright;
 	TButton *OKButton;
         TMemo *Memo1;
+	TLabel *Comments;
     void __fastcall FormCreate(TObject *Sender);
 private:
 public:

@@ -476,7 +476,6 @@ public:		// User declarations
 	TLFDetectedItem*            m_pBaseObject;
     // with this descriptor works TableViewForm and ImageViewForm
 	TLFSemanticImageDescriptor  m_Descr;
-    TLFRoiImageDescriptor		m_rois;
 	bool                        m_DrawOverlaps;
 	AnsiString    		        m_strFileName;
 	SDbCopyOptions 				copy_options;
