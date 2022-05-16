@@ -63,7 +63,7 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <SanitizedProjectName>ObjectsMarker</SanitizedProjectName>
         <VerInfo_Locale>1049</VerInfo_Locale>
-        <IncludePath>common\;..\EngineView\;..\common\;$(AWP);$(AWP)\include;C:\work\BAISim\awplflib\include;$(PHOTON41);$(PHOTON41)\photon;$(IncludePath)</IncludePath>
+        <IncludePath>common\;..\EngineView\;..\common\;$(AWP);$(AWP)\include;..\awplflib\include;$(PHOTON41);$(PHOTON41)\photon;$(IncludePath)</IncludePath>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Build>111</VerInfo_Build>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.111;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
@@ -82,7 +82,7 @@
         <BRCC_IncludePath>..\common;$(BDS)\Bin;$(BDS)\Projects\common;$(BDS)\Projects;$(BDS)\include;$(BDS)\include\vcl;..\..\awpipl2\include;..\..\awplflib\include;..\..\include;..\..\awpipl2\include\_include;$(TINY);$(PHOTON);$(LF);$(BRCC_IncludePath)</BRCC_IncludePath>
         <BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
         <TASM_Debugging>Full</TASM_Debugging>
-        <ILINK_LibraryPath>common\;..\EngineView\;..\common\;$(BDS)\Bin;$(BDS)\lib;$(AWP)\lib;C:\work\BAISim\lib\x86\Debug\borland;$(TINY)\lib;$(PHOTON41)\lib\;$(AWPLIB);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>common\;..\EngineView\;..\common\;$(BDS)\Bin;$(BDS)\lib;$(AWP)\lib;..\lib\x86\Debug\borland;$(TINY)\lib;$(PHOTON41)\lib\;$(AWPLIB);$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <TASM_IncludePath>..\common;$(BDS)\Bin;$(BDS)\Projects\common;$(BDS)\Projects;$(BDS)\include;$(BDS)\include\vcl;..\..\awpipl2\include;..\..\awplflib\include;..\..\include;..\..\awpipl2\include\_include;$(TINY);$(PHOTON);$(LF);$(TASM_IncludePath)</TASM_IncludePath>
         <DCC_UnitSearchPath>.\;$(BDS)\lib;$(BDS)\lib\obj;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_AdditionalSwitches> -M</DCC_AdditionalSwitches>
@@ -170,9 +170,9 @@
         <BPILibOutputDir>$(PHOTON)\lib</BPILibOutputDir>
         <FinalOutputDir>$(PHOTON)\bin</FinalOutputDir>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <VerInfo_Build>19</VerInfo_Build>
+        <VerInfo_Build>20</VerInfo_Build>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=NN-Videolab;FileVersion=4.1.2.19;InternalName=Objects Marker;LegalCopyright=Copyright (c) 2007-2022 NN-Videolab.net;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=Creation of models for the semantic analysis of images.;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=NN-Videolab;FileVersion=4.1.2.20;InternalName=Objects Marker;LegalCopyright=Copyright (c) 2007-2022 NN-Videolab.net;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=Creation of models for the semantic analysis of images.;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <LinkPackageStatics>vcl.lib;rtl.lib;vclx.lib;bcbsmp.lib;dbrtl.lib;xmlrtl.lib;inet.lib;vcldb.lib;vclimg.lib;VclSmp.lib;photon41.lib;Tee927.lib</LinkPackageStatics>
         <BCC_UserSuppliedOptions> -tWM -Vx -r- -k -Ve -r</BCC_UserSuppliedOptions>

@@ -69,7 +69,7 @@
     <Transaction>1899.12.30 00:00:00.000.960,C:\_alt\_proj\photon\photon.research\FaceMarker\ResizeForm.cpp=C:\_alt\_proj\photon\photon.research\FaceMarker\OKCANCL2.cpp</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="..\..\photon.apps"/>
+    <File Path="..\..\ObjectMarker"/>
     <File Path="..\common"/>
     <File Path="..\common\AboutForm.cpp"/>
     <File Path="..\common\AboutForm.cpp"/>
