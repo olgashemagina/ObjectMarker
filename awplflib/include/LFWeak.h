@@ -104,7 +104,7 @@ public:
 
     virtual void StartTraining();
     virtual void Train();
-    virtual void AddSample(TCSSample* pSample,int  flag, double weight, int base_widht);
+    virtual void AddSample(TCSSample* pSample,int  flag, double weight, int base_width, int base_height);
 
     void SetEpsilon(double Value)
     {

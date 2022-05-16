@@ -224,17 +224,17 @@ void TCSWeakTraining::Train()
 		m_Classifiacator[i] = m_NonFacesDistrib[i] >= m_FacesDistrib[i] ? 0: 1;
 }
 
-void TCSWeakTraining::AddSample(TCSSample* pSample,int  flag, double weight, int base_width)
+void TCSWeakTraining::AddSample(TCSSample* pSample,int  flag, double weight, int base_width, int base_height)
 {
-	double factor = (double)(pSample->GetImage()->sSizeX) / (double)base_width;
-  m_pFeature->Scale(factor);
-  awpImage* img = pSample->GetIntegralImage();
+	double factor = std::min<double>(pSample->GetImage()->sSizeX / double(base_width), pSample->GetImage()->sSizeY / double(base_height));
+	m_pFeature->Scale(factor);
+	awpImage* img = pSample->GetIntegralImage();
 
-  int idx = m_pFeature->uCalcValue(pSample);//sensor->CalcValue(img);
-  if (flag == 1)
-     m_FacesDistrib[idx] += weight;
-  else if (flag == 0)
-     m_NonFacesDistrib[idx] += weight;
+	int idx = m_pFeature->uCalcValue(pSample);//sensor->CalcValue(img);
+	if (flag == 1)
+		m_FacesDistrib[idx] += weight;
+	else if (flag == 0)
+		m_NonFacesDistrib[idx] += weight;
 }
 
 //------------------------------------------------------------------------------

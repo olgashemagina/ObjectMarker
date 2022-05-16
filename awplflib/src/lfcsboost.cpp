@@ -176,8 +176,7 @@ bool TCSAdaBoost::Boost(int stage)
 
 //Update
 #ifdef _OMP_
-omp_set_num_threads(8);
-#pragma omp parallel for reduction(+: count)
+#pragma omp parallel for reduction(+: count) num_threads(omp_get_max_threads())
 #endif 
      	for ( int w = 0; w < m_Features.GetCount(); ++w )
         {
@@ -191,7 +190,7 @@ omp_set_num_threads(8);
             for ( int i = 0; i < m_TrainingSamples.GetCount(); i++)
             {
                TCSSample* s = (TCSSample*)m_TrainingSamples.Get(i);
-			   wcinfo->AddSample(s, s->GetFlag(), s->GetWeight(), this->m_widthBase);
+			   wcinfo->AddSample(s, s->GetFlag(), s->GetWeight(), this->m_widthBase, this->m_heightBase);
             }
             wcinfo->Train();
 
@@ -200,7 +199,7 @@ omp_set_num_threads(8);
             {
                 TCSSample* s = (TCSSample*)m_TrainingSamples.Get(i);
 
-				double factor = (double)(s->GetImage()->sSizeX)/m_widthBase;
+				double factor = std::min<double>((double)(s->GetImage()->sSizeX) / m_widthBase, (double)(s->GetImage()->sSizeY) / m_heightBase);
 				wcinfo->Scale(factor);
 
 				int res = wcinfo->Classify( s );
@@ -427,6 +426,7 @@ bool TCSAdaBoost::LoadSample(TLFObjectList& SampleList, int flag, std::string co
 		//DbgMsg(name + "\n");
 		pSample->LoadFromFile((char*)name.c_str());
 		double e = 0;
+
 		if (pSample->GetImage()->sSizeX < this->m_widthBase || pSample->GetImage()->sSizeY < this->m_heightBase)
 		{
 			delete pSample;

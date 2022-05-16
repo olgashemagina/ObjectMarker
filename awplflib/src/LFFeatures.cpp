@@ -586,6 +586,127 @@ double            TLFColorSensor9Bit::fCalcValue(TLFImage* pImage)
 	return (double)uCalcValue(pImage);
 }
 
+/*
+	H line - feature
+*/
+TLFLHFeature::TLFLHFeature() : ILFFeature()
+{
+
+}
+TLFLHFeature::TLFLHFeature(ILFFeature* feature) : ILFFeature(feature)
+{
+
+}
+TLFLHFeature::TLFLHFeature(int sxbase, int sybase, int wbase, int hbase) : ILFFeature(sxbase, sybase, wbase, hbase)
+{
+
+}
+
+unsigned int      TLFLHFeature::uCalcValue(TLFImage* pImage)
+{
+	double v = fCalcValue(pImage);
+	m_uValue = (unsigned int)((v + 4.2426406871192848) * 60.33977866125207);
+	return   m_uValue;
+}
+double            TLFLHFeature::fCalcValue(TLFImage* pImage)
+{
+	if (pImage == NULL)
+	{
+		m_fValue = 0;
+		return m_fValue;
+	}
+	else
+	{
+		double s, v1, v2, v3, sigma, value;
+		s = 3 * m_w * m_h;
+		value = pImage->CalcLnSum(this->m_sx, this->m_sy, this->m_w, 3 * this->m_h);
+		sigma = pImage->CalcSqSum(this->m_sx, this->m_sy, this->m_w, 3 * this->m_h);
+		value /= s;
+		sigma /= s;
+		sigma = sigma - value * value;
+
+		if (sigma == 0)
+			return 0;
+		s /= 3;//?!
+		v1 = pImage->CalcLnSum(m_sx, m_sy, m_w, m_h) / s;
+		v2 = pImage->CalcLnSum(m_sx, m_sy + m_h, m_w, m_h) / s;
+		v3 = pImage->CalcLnSum(m_sx, m_sy + 2 * m_h, m_w, m_h) / s;
+		m_fValue = (v1 - 2*v2 + v3) / sqrt(sigma);
+		return m_fValue;
+	}
+}
+
+awpRect TLFLHFeature::GetRect()
+{
+	awpRect result;
+	result.left = this->m_sxBase;
+	result.top = this->m_syBase;
+	result.right = result.left + this->m_wBase;
+	result.bottom = result.top + 3 * this->m_hBase;
+	return result;
+}
+/*
+	V line - feature
+*/
+TLFLVFeature::TLFLVFeature() : ILFFeature()
+{
+
+}
+TLFLVFeature::TLFLVFeature(ILFFeature* feature) : ILFFeature(feature)
+{
+
+}
+TLFLVFeature::TLFLVFeature(int sxbase, int sybase, int wbase, int hbase) : ILFFeature(sxbase, sybase, wbase, hbase)
+{
+
+}
+
+unsigned int      TLFLVFeature::uCalcValue(TLFImage* pImage)
+{
+	double v = fCalcValue(pImage);
+	m_uValue = (unsigned int)((v + 4.2426406871192848) * 60.33977866125207);
+	return   m_uValue;
+}
+double            TLFLVFeature::fCalcValue(TLFImage* pImage)
+{
+	if (pImage == NULL)
+	{
+		m_fValue = 0;
+		return m_fValue;
+	}
+	else
+	{
+		double s, v1, v2, v3, sigma, value;
+		s = 3 * m_w * m_h;
+		value = pImage->CalcLnSum(this->m_sx, this->m_sy, 3 * this->m_w, this->m_h);
+		sigma = pImage->CalcSqSum(this->m_sx, this->m_sy, 3 * this->m_w, this->m_h);
+		value /= s;
+		sigma /= s;
+		sigma = sigma - value * value;
+
+		if (sigma == 0)
+		{
+			m_fValue = 0;
+			return m_fValue;
+		}
+		s /= 3;//?!
+		v1 = pImage->CalcLnSum(m_sx, m_sy, m_w, m_h) / s;
+		v2 = pImage->CalcLnSum(m_sx + m_w, m_sy, m_w, m_h) / s;
+		v3 = pImage->CalcLnSum(m_sx + 2 * m_w, m_sy, m_w, m_h) / s;
+		m_fValue = (v1 - 2*v2 + v3) / sqrt(sigma);
+		return   m_fValue;
+	}
+}
+awpRect TLFLVFeature::GetRect()
+{
+	awpRect result;
+	result.left = this->m_sxBase;
+	result.top = this->m_syBase;
+	result.right = result.left + 3 * this->m_wBase;
+	result.bottom = result.top + this->m_hBase;
+	return result;
+}
+
 //---------------------------------------------------------------------------
 //
 TCSSensor::TCSSensor()

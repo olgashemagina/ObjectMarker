@@ -49,6 +49,8 @@
 //		TLFCFeature			- center feature with norm
 //		TLFLBPFeature		- 256 pin binary pattern
 //      TLFColorSensor9Bit  - color feature 9 bit
+//		TLFLHFeature		- horizontal line feature with norm
+//		TLFLVFeature		- vertical line feature with norm
 //		TCSSensor			- 512 pin binary pattern (census feature)
 //
 //      CopyRight 2004-2018 (c) NN-Videolab.net
@@ -250,6 +252,47 @@ public:
 	}
 };
 
+/*
+	horizontal line feature with norm
+*/
+class TLFLHFeature : public ILFFeature
+{
+public:
+	TLFLHFeature();
+	TLFLHFeature(ILFFeature* feature);
+	TLFLHFeature(int sxbase, int sybase, int wbase, int hbase);
+
+	virtual unsigned int      uCalcValue(TLFImage* pImage);
+	virtual double            fCalcValue(TLFImage* pImage);
+
+	virtual awpRect GetRect();
+
+	virtual const char* GetName()
+	{
+		return "TLFLHFeature";
+	}
+};
+
+/*
+	vertical line feature
+*/
+class TLFLVFeature : public ILFFeature
+{
+public:
+	TLFLVFeature();
+	TLFLVFeature(ILFFeature* feature);
+	TLFLVFeature(int sxbase, int sybase, int wbase, int hbase);
+
+	virtual unsigned int      uCalcValue(TLFImage* pImage);
+	virtual double            fCalcValue(TLFImage* pImage);
+
+	virtual awpRect GetRect();
+
+	virtual const char* GetName()
+	{
+		return "TLFLVFeature";
+	}
+};
 //---------------------------------------------------------------------------
 // сенсор преобразования Census для произвольного изображения
 class TCSSensor : public ILFFeature, public _ILFFeature
@@ -291,6 +334,8 @@ public:
 {
 	double* p = pix + x + (y)*ww;
 
+	//h = (h-1)*ww;
+	//w = w - 1;
 	h = h*ww;
 
 	return (p[0] + p[w + h] - p[h] - p[w]);
