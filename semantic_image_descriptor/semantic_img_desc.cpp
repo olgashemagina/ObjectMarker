@@ -90,7 +90,7 @@ int apply_detectors_to_folder(const TLFStrings &det_paths,
 		img_res_doc.LinkEndChild(res_list);
 
 		for (int j = 0; j < dets.size(); j++) {
-			if (!dets[j]->SetSourceImage(&img, false)) {
+			if (!dets[j]->SetSourceImage(&img, true)) {
 				std::cerr << "Can't import image " << img_files[i] <<
 					" to detector " << dets[j]->GetPredictorName() <<
 					std::endl;
